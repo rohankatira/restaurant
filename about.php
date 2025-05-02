@@ -1,6 +1,6 @@
 <?php include 'partials/header.php'; ?> <div class="container my-5">
     <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0"> <img src="images/about-restaurant.jpg" alt="Restaurant Interior" class="img-fluid rounded shadow" /> </div>
+        <div class="col-md-6 mb-4 mb-md-0"> <img src="./IMAGES/int.jpg" alt="Restaurant Interior" class="img-fluid rounded shadow" /> </div>
         <div class="col-md-6">
             <h2 class="mb-3">About Us</h2>
             <p class="text-muted"> Welcome to <strong>Steak in</strong>, where passion meets flavor. We are committed to serving delicious, freshly prepared meals in a warm and inviting environment. Our team of expert chefs crafts each dish with care, using only the finest locally sourced ingredients. </p>

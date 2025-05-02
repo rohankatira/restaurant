@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6">
-        <img src="images/restaurant-interior.jpg" class="img-fluid rounded" alt="Restaurant Interior">
+        <img src="./IMAGES/int.jpg" class="img-fluid rounded" alt="Restaurant Interior">
       </div>
       <div class="col-md-6">
         <h2 class="mb-4">Our Story</h2>
@@ -42,7 +42,7 @@
     <div class="row g-4">
       <div class="col-md-4">
         <div class="card h-100 border-0 shadow">
-          <img src="images/dish1.jpg" class="card-img-top" alt="Dish 1">
+          <img src="./IMAGES/Butter-chicken.jpg" class="card-img-top" alt="Dish 1">
           <div class="card-body">
             <h5 class="card-title">Butter Chicken</h5>
             <p class="card-text"> Tender chicken cooked in a rich, creamy tomato-based gravy with butter and aromatic spices.</p>
@@ -51,7 +51,7 @@
       </div>
       <div class="col-md-4">
         <div class="card h-100 border-0 shadow">
-          <img src="images/dish2.jpg" class="card-img-top" alt="Dish 2">
+          <img src="./IMAGES/9de897f6aef8e881753607758ce1adc5.jpg" class="card-img-top" alt="Dish 2">
           <div class="card-body">
             <h5 class="card-title">Paneer Butter Masala</h5>
             <p class="card-text">Cubes of paneer simmered in a velvety butter-tomato curry with Indian spices.</p>
@@ -60,10 +60,10 @@
       </div>
       <div class="col-md-4">
         <div class="card h-100 border-0 shadow">
-          <img src="images/dish3.jpg" class="card-img-top" alt="Dish 3">
+          <img src="./IMAGES/Vegetarians-Delight-–-Paneer-Tikka-1024x624.jpg" class="card-img-top" alt="Dish 3">
           <div class="card-body">
             <h5 class="card-title">Hyderabadi Biryani</h5>
-            <p class="card-text">Fresh Atlantic salmon seared and served with lemon butter sauce.</p>
+            <p class="card-text">A royal dish made with fragrant basmati rice, saffron, and a blend of spiced vegetables or meat.</p>
           </div>
         </div>
       </div>
