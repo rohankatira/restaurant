@@ -1,52 +1,84 @@
-<?php include 'partials/header.php'; ?> <!-- Hero Section -->
-<section class="bg-dark text-white text-center py-5" style="background: url('https://via.placeholder.com/1200x500?text=Restaurant+Ambience') center/cover no-repeat;">
-  <div class="container py-5">
-    <h1 class="display-3 fw-bold">Welcome to Delight Dine</h1>
-    <p class="lead">Experience world-class flavors with warm hospitality</p> <a href="menu.php" class="btn btn-warning btn-lg mt-3">Explore Our Menu</a>
-  </div>
-</section> <!-- About Section -->
-<section class="container py-5">
-  <div class="row align-items-center">
-    <div class="col-md-6"> <img src="https://via.placeholder.com/500x300?text=Food+Spread" class="img-fluid rounded shadow" alt="Food Spread"> </div>
-    <div class="col-md-6">
-      <h2 class="fw-bold">A Taste You’ll Never Forget</h2>
-      <p>At Delight Dine, we craft meals with fresh ingredients, inspired by authentic flavors and local love. Whether you're dining in or ordering online, every bite is a celebration.</p> <a href="about.php" class="btn btn-outline-primary mt-3">Learn More About Us</a>
+<?php include 'partials/header.php'; ?>
+
+<!-- Hero Section with Carousel -->
+<section id="hero" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="background: url('./IMAGES/body-image-d112011-All-about-Bin-Sougat-Centre.jpg') no-repeat center center/cover; height: 100vh;">
+      <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+        <h1 class="display-3 fw-bold text-white">Welcome to Steak In</h1>
+        <p class="lead text-white">Experience the finest steaks and exquisite dining ambiance.</p>
+        <a href="reservation.php" class="btn btn-lg btn-warning text-dark mt-3">Book a Table</a>
+      </div>
     </div>
   </div>
-</section> <!-- Features Section -->
-<section class="bg-light py-5">
+  <button class="carousel-control-prev" type="button" data-bs-target="#hero" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#hero" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</section>
+
+<!-- About Section -->
+<section class="py-5 bg-dark text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="images/restaurant-interior.jpg" class="img-fluid rounded" alt="Restaurant Interior">
+      </div>
+      <div class="col-md-6">
+        <h2 class="mb-4">Our Story</h2>
+        <p>At Steak In, we pride ourselves on delivering an unparalleled dining experience. Our chefs craft each dish with passion, ensuring every bite is a delight.</p>
+        <a href="about.php" class="btn btn-outline-light mt-3">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Menu Highlights -->
+<section class="py-5">
   <div class="container text-center">
-    <h2 class="mb-4">Why Choose Us?</h2>
+    <h2 class="mb-5">Signature Dishes</h2>
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body"> <i class="bi bi-emoji-smile fs-1 text-warning"></i>
-            <h5 class="card-title mt-3">Friendly Atmosphere</h5>
-            <p class="card-text">A cozy, welcoming space perfect for family dinners and friendly meetups.</p>
+        <div class="card h-100 border-0 shadow">
+          <img src="images/dish1.jpg" class="card-img-top" alt="Dish 1">
+          <div class="card-body">
+            <h5 class="card-title">Butter Chicken</h5>
+            <p class="card-text"> Tender chicken cooked in a rich, creamy tomato-based gravy with butter and aromatic spices.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body"> <i class="bi bi-truck fs-1 text-success"></i>
-            <h5 class="card-title mt-3">Quick Delivery</h5>
-            <p class="card-text">Fast, hygienic delivery service straight to your doorstep.</p>
+        <div class="card h-100 border-0 shadow">
+          <img src="images/dish2.jpg" class="card-img-top" alt="Dish 2">
+          <div class="card-body">
+            <h5 class="card-title">Paneer Butter Masala</h5>
+            <p class="card-text">Cubes of paneer simmered in a velvety butter-tomato curry with Indian spices.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body"> <i class="bi bi-star-fill fs-1 text-primary"></i>
-            <h5 class="card-title mt-3">Top-rated Chefs</h5>
-            <p class="card-text">Enjoy gourmet food made by industry-leading culinary experts.</p>
+        <div class="card h-100 border-0 shadow">
+          <img src="images/dish3.jpg" class="card-img-top" alt="Dish 3">
+          <div class="card-body">
+            <h5 class="card-title">Hyderabadi Biryani</h5>
+            <p class="card-text">Fresh Atlantic salmon seared and served with lemon butter sauce.</p>
           </div>
         </div>
       </div>
     </div>
+    <a href="menu.php" class="btn btn-warning text-dark mt-4">View Full Menu</a>
   </div>
-</section> <!-- Call to Action Section -->
-<section class="text-center py-5 bg-warning text-dark">
+</section>
+
+<!-- Reservation Call to Action -->
+<section class="py-5 bg-warning text-dark text-center">
   <div class="container">
-    <h2 class="mb-3 fw-bold">Ready to Book Your Table?</h2> <a href="reservation.php" class="btn btn-dark btn-lg">Make a Reservation</a>
+    <h2 class="mb-3">Ready to Dine with Us?</h2>
+    <p class="mb-4">Reserve your table now and enjoy an unforgettable culinary journey.</p>
+    <a href="reservation.php" class="btn btn-dark btn-lg">Make a Reservation</a>
   </div>
-</section> <?php include 'partials/footer.php'; ?>
+</section>
+
+<?php include 'partials/footer.php'; ?>

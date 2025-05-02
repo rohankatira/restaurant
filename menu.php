@@ -1,140 +1,74 @@
-<!-- menu.php -->
-<?php include 'partials/header.php'; ?>
+<?php
+session_start();
+include 'db.php';
+include 'partials/header.php';
 
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Our Menu</h2>
+// Handle Add to Cart action
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
+    $item_id = $_POST['item_id'];
+    $quantity = $_POST['quantity'];
 
-  <!-- Starters Section -->
-  <h4 class="text-primary mt-4">Starters</h4>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
 
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Paneer+Tikka" class="card-img-top" alt="Paneer Tikka">
-        <div class="card-body">
-          <h5 class="card-title">Paneer Tikka</h5>
-          <p class="card-text">Spiced grilled paneer served with mint chutney.</p>
-          <p class="text-success fw-bold">₹250</p>
-        </div>
-      </div>
+    if (isset($_SESSION['cart'][$item_id])) {
+        $_SESSION['cart'][$item_id] += $quantity;
+    } else {
+        $_SESSION['cart'][$item_id] = $quantity;
+    }
+
+    header('Location: order.php');
+    exit;
+}
+?>
+
+<div class="container my-5">
+    <h2 class="text-center mb-5">Our Menu</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <?php
+        $query = "SELECT * FROM menu";
+        $result = mysqli_query($conn, $query);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <img src="<?php echo $row['image']; ?>" class="card-img-top" alt="<?php echo $row['name']; ?>" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title"><?php echo $row['name']; ?></h5>
+                        <p class="card-text text-muted"><?php echo $row['description']; ?></p>
+                        <p class="text-success fw-bold">₹<?php echo $row['price']; ?></p>
+
+                        <form method="post" class="mt-auto d-flex align-items-center justify-content-between">
+                            <input type="hidden" name="item_id" value="<?php echo $row['id']; ?>">
+                            <div class="input-group" style="width: 120px;">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="decreaseQty(this)">-</button>
+                                <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm text-center qty-input">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="increaseQty(this)">+</button>
+                            </div>
+                            <button type="submit" name="add_to_cart" class="btn btn-primary btn-sm ms-2">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
     </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Spring+Rolls" class="card-img-top" alt="Spring Rolls">
-        <div class="card-body">
-          <h5 class="card-title">Veg Spring Rolls</h5>
-          <p class="card-text">Crispy rolls stuffed with spicy veggies.</p>
-          <p class="text-success fw-bold">₹180</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Manchurian+Balls" class="card-img-top" alt="Manchurian Balls">
-        <div class="card-body">
-          <h5 class="card-title">Veg Manchurian</h5>
-          <p class="card-text">Fried vegetable balls in a tangy soy sauce.</p>
-          <p class="text-success fw-bold">₹200</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Course Section -->
-  <h4 class="text-primary mt-5">Main Course</h4>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Veg+Biryani" class="card-img-top" alt="Veg Biryani">
-        <div class="card-body">
-          <h5 class="card-title">Veg Biryani</h5>
-          <p class="card-text">Flavored basmati rice with mixed vegetables and spices.</p>
-          <p class="text-success fw-bold">₹220</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Butter+Naan+Paneer" class="card-img-top" alt="Butter Naan + Paneer">
-        <div class="card-body">
-          <h5 class="card-title">Butter Naan + Paneer Butter Masala</h5>
-          <p class="card-text">Soft naan served with creamy paneer butter masala.</p>
-          <p class="text-success fw-bold">₹240</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Pizza+Margherita" class="card-img-top" alt="Pizza">
-        <div class="card-body">
-          <h5 class="card-title">Pizza Margherita</h5>
-          <p class="card-text">Classic pizza with fresh tomatoes, mozzarella, and basil.</p>
-          <p class="text-success fw-bold">₹299</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Desserts Section -->
-  <h4 class="text-primary mt-5">Desserts</h4>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Gulab+Jamun" class="card-img-top" alt="Gulab Jamun">
-        <div class="card-body">
-          <h5 class="card-title">Gulab Jamun</h5>
-          <p class="card-text">Soft fried balls soaked in rose-flavored sugar syrup.</p>
-          <p class="text-success fw-bold">₹90</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Chocolate+Brownie" class="card-img-top" alt="Brownie">
-        <div class="card-body">
-          <h5 class="card-title">Chocolate Brownie</h5>
-          <p class="card-text">Rich and moist chocolate brownie served warm.</p>
-          <p class="text-success fw-bold">₹120</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Beverages Section -->
-  <h4 class="text-primary mt-5">Beverages</h4>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Mango+Lassi" class="card-img-top" alt="Mango Lassi">
-        <div class="card-body">
-          <h5 class="card-title">Mango Lassi</h5>
-          <p class="card-text">A sweet and creamy mango yogurt drink.</p>
-          <p class="text-success fw-bold">₹80</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200?text=Cold+Coffee" class="card-img-top" alt="Cold Coffee">
-        <div class="card-body">
-          <h5 class="card-title">Cold Coffee</h5>
-          <p class="card-text">Chilled coffee blended with milk and ice cream.</p>
-          <p class="text-success fw-bold">₹100</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
+
+<script>
+    function increaseQty(button) {
+        const input = button.parentElement.querySelector(".qty-input");
+        input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseQty(button) {
+        const input = button.parentElement.querySelector(".qty-input");
+        if (parseInt(input.value) > 1) {
+            input.value = parseInt(input.value) - 1;
+        }
+    }
+</script>
 
 <?php include 'partials/footer.php'; ?>
